@@ -13,7 +13,6 @@ try {
     const payloadUrl = core.getInput('payloadUrl');
     const webhookSecret = core.getInput('webhookSecret');
     console.log(email)
-    console.log(process.env['username'])
     let payload = JSON.stringify(github.context.payload, undefined, 2)
     payload = JSON.parse(payload);
     payload.email = email;
@@ -35,7 +34,7 @@ try {
     console.log(body);
 
     axios.post(loginUrl, body, options).then((resp) => {
-        core.setOutput('step', 'auth on S4')
+        core.setOutput('step', 'auth on S4 option')
         console.log(resp.data);
 
         if (resp.data.auth === true) {
