@@ -21,7 +21,6 @@ try {
         headers: {
             'x-hub-signature': 'sha1='+self_signature
         }
-
     }
 
     var body = {
@@ -30,6 +29,7 @@ try {
     }
     console.log(body)
     axios.post(loginUrl, body).then((resp) => {
+        console.log(resp)
         if (resp.data.auth == true) {
             console.log(resp.data.message);
         }else
@@ -39,6 +39,7 @@ try {
         }
 
         axios.post(payloadUrl, payload, options).then((resps) => {
+            console.log(resps)
             if(resps.status == 200) {
                 if(resps.data.isVul === false) {
                     console.log(resps.data.message);
@@ -50,13 +51,16 @@ try {
                 core.setFailed(resps.data.message);
             }
         }).catch((err) => {
+            console.error(err)
             core.setFailed(err.message);
         })
     })
         .catch((err)=> {
+            console.error(err)
             core.setFailed(err.message);
         })
 }
 catch (error) {
+    console.error(error)
     core.setFailed(error.message);
 }
