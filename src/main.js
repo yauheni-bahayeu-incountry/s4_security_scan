@@ -34,7 +34,7 @@ try {
     core.setOutput('log as', email);
     console.log(body);
 
-    axios.post(loginUrl, body).then((resp) => {
+    axios.post(loginUrl, body, options).then((resp) => {
         core.setOutput('step', 'auth on S4')
         console.log(resp.data);
 
