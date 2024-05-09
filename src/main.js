@@ -33,20 +33,23 @@ try {
     core.setOutput('log as', email);
     console.log(body);
 
-    axios.post(loginUrl, body, options).then((resp) => {
+    axios.post(loginUrl, body).then((resp) => {
         core.setOutput('step', 'auth on S4 option')
         console.log(resp.data);
 
         if (resp.data.auth === true) {
             core.setOutput('S4 Auth', 'success')
             console.log('auth')
-            console.log(resp.data.message);
+            console.log(resp.data);
         } else {
             core.setOutput('S4 Auth', 'error')
             console.log('not auth')
             core.setFailed(resp.data.message);
             process.exit(1);
         }
+
+        console.log('send payload')
+        console.log(payload);
 
         axios.post(payloadUrl, payload, options).then((resps) => {
             core.setOutput('step', 'send payload to S4')
