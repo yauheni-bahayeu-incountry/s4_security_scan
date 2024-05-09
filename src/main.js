@@ -6,6 +6,7 @@ console.log('init')
 try {
     const time = (new Date()).toTimeString();
     core.setOutput("started at", time);
+    core.info("started at", time)
 
     const email = core.getInput('username');
     const password = core.getInput('password');
@@ -23,7 +24,8 @@ try {
     const options = {
         headers: {
             'x-hub-signature': 'sha1='+self_signature
-        }
+        },
+        timeout: 2000
     }
 
     const body = {
