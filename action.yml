@@ -1,0 +1,32 @@
+name: 's4-security-scan'
+description: 'Scan the repo when webhook is fired'
+inputs:
+  loginUrl:
+    description: 'Request URL'
+    required: true
+  payloadUrl:
+    description: 'Payload URL'
+    required: true
+  webhookSecret:
+    description: 'Webhook secret'
+    required: true
+  method:
+    description: 'Request Method'
+    required: false
+    default: 'POST'
+  username:
+    description: 'Auth Username'
+    required: true
+  password:
+    description: 'Auth Password'
+    required: true
+outputs:
+  response:
+    description: 'HTTP Response Content'
+runs:
+  using: 'node20'
+  main:  'src/main.js'
+
+branding:
+  icon: 'check'
+  color: 'green'
